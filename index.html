@@ -382,9 +382,9 @@
             </div>
         </section>
 
-        <!-- 2. Familia (Padres y Padrinos) -->
+        <!-- 2. Familia (Madre, Hermano y Padrinos) -->
         <section class="section-block bg-pink">
-            <div class="anim-element anim-fade-up delay-1 info-title">Con la bendición de mis padres</div>
+            <div class="anim-element anim-fade-up delay-1 info-title">Con la bendición de mi madre y mi hermano</div>
             <div class="anim-element anim-zoom delay-2 info-data shimmer-text">Paola Morales Franco</div>
             <div class="anim-element anim-fade-up delay-3" style="font-family: 'Cinzel', serif; font-size: 24px; color: var(--gold-editorial); margin: 15px 0;">&</div>
             <div class="anim-element anim-zoom delay-3 info-data shimmer-text">Santiago López Morales</div>
@@ -526,7 +526,7 @@
                 </select>
             </div>
             
-            <button onclick="sendRSVP()" class="anim-element anim-zoom delay-4 btn-solid" style="margin-bottom: 70px;">Confirmar por WhatsApp</button>
+            <button onclick="sendRSVP()" class="anim-element anim-zoom delay-4 btn-solid" style="margin-bottom: 70px;">Confirmar Asistencia</button>
 
             <div class="anim-element anim-zoom line-divider"></div>
 
@@ -550,6 +550,10 @@
     </main>
 
     <script>
+        // --- NÚMEROS DE WHATSAPP CONFIGURADOS ---
+        const wpRsvpNumber = "525549374589"; // Número para Confirmaciones de Asistencia
+        const wpWishNumber = "525531176516"; // Número para Mensajes de Buenos Deseos
+
         // --- GENERADOR DE DESTELLOS MÁGICOS (PREMIUM EFFECT) ---
         function createSparkles() {
             const container = document.getElementById('sparkles-container');
@@ -629,9 +633,6 @@
         let pasesAsignados = 0;
         const urlParams = new URLSearchParams(window.location.search);
         let parametroPases = urlParams.get('p') || urlParams.get('pases');
-        
-        // Número de contacto asignado
-        const wpNumber = "525549374589"; 
 
         if (parametroPases && !isNaN(parametroPases)) {
             pasesAsignados = parseInt(parametroPases);
@@ -665,7 +666,7 @@
             }
         });
 
-        // --- ENVÍO A WHATSAPP ---
+        // --- ENVÍO DE RSVP A WHATSAPP ---
         function sendRSVP() {
             const name = document.getElementById("rsvp-name").value.trim();
             const status = document.getElementById("rsvp-status").value;
@@ -686,9 +687,10 @@
             } else {
                 message = encodeURIComponent(`¡Hola! Soy ${name}. Agradezco mucho la invitación a los XV años de Brithany, pero lamentablemente no me será posible asistir. ¡Les deseo una noche hermosa! ✨`);
             }
-            window.open(`https://wa.me/${wpNumber}?text=${message}`, '_blank');
+            window.open(`https://wa.me/${wpRsvpNumber}?text=${message}`, '_blank');
         }
 
+        // --- ENVÍO DE DESEOS A WHATSAPP ---
         function sendWish() {
             const name = document.getElementById("wish-name").value.trim();
             const wish = document.getElementById("wish-message").value.trim();
@@ -698,7 +700,7 @@
                 return;
             }
             const message = encodeURIComponent(`¡Hola Brithany! Soy ${name}. Te envío este mensaje con mucho cariño por tus XV años:\n\n"${wish}" 💖`);
-            window.open(`https://wa.me/${wpNumber}?text=${message}`, '_blank');
+            window.open(`https://wa.me/${wpWishNumber}?text=${message}`, '_blank');
         }
     </script>
 </body>
